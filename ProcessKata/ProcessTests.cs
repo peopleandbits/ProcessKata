@@ -8,46 +8,43 @@ namespace ProcessKata
         [TestMethod]
         public void RunOldest()
         {
-            IProcess p = new ProcessOld();
-            RunTests(p);
+            RunTests(new Process1());
         }
 
         [TestMethod]
         public void RunOld()
         {
-            IProcess p = new ProcessOld();
-            RunTests(p);
+            RunTests(new Process2());
         }
 
         [TestMethod]
-        public void RunRules1to4()
+        public void Run()
         {
-            var rules = new IRule[] { new Rule1(), new Rule2(), new Rule3(), new Rule4() };
-            IProcess p = new Process(rules);
-            RunTests(p);
+            var rules = new IRule[] { new R1(), new R2(), new R3(), new R4() };
+            RunTests(new Process3(rules));
         }
 
         [TestMethod]
-        public void RunRules1and4()
+        public void RunRules1and3()
         {
-            var rules = new IRule[] { new Rule1(), new Rule4() };
-            var input = new ProcessInput(1, 2, 3);
-            IProcess p = new Process(rules);
-            var result = p.Run(input);
-
+            var rules = new IRule[] { new R1(), new R3() };
+            var input = new Input(1, 2, 3);
+            int result = new Process3(rules).Run(input);
+            
             // rules 1 and 3 applied
-            Assert.AreEqual(15, result.A); // (1 + 10 * 3) + 3 + 4 = 40  
-            Assert.AreEqual(16, result.B); // (2 + 10 * 3) + 3 + 4 = 43
+            Assert.AreEqual(8, result);
+
+            IProcess p = new Process1();
+            p.Run(new Input(1,2,3));
         }
 
         static void RunTests(IProcess p)
         {
-            var input = new ProcessInput(1, 2, 3);
+            var input = new Input(1, 2, 3);
             var result = p.Run(input);
 
             // rules 1, 2, 3 and 4 applied
-            Assert.AreEqual(40, result.A); // (1 + 10 * 3) + 3 + 4 = 40  
-            Assert.AreEqual(43, result.B); // (2 + 10 * 3) + 3 + 4 = 43
+            Assert.AreEqual(18, result);
         }
     }
 }

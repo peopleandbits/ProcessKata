@@ -51,13 +51,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Infra.cs" />
-    <Compile Include="Process.cs" />
-    <Compile Include="ProcessOld.cs" />
-    <Compile Include="ProcessOldest.cs" />
+    <Compile Include="Process3.cs" />
+    <Compile Include="Process2.cs" />
+    <Compile Include="Process1.cs" />
     <Compile Include="ProcessTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules.cs" />
     <Compile Include="RuleTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
